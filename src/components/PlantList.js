@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PlantCard from "./PlantCard";
 
-function PlantList() {
+function PlantList({ plants, onToggleStock }) {
+
+  const plantCards = plants.map((plant) => 
+    <PlantCard 
+    key={plant.id} 
+    name={plant.name} 
+    image={plant.image} 
+    price={plant.price}
+    inStock={plant.stocked} 
+    onToggleStock={() => onToggleStock(plant.id)}
+    />)
+
   return (
-    <ul className="cards">{/* render PlantCards components in here */}</ul>
+    <ul className="cards">
+      {plantCards}
+    </ul>
   );
 }
 
