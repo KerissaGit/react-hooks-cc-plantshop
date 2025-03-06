@@ -1,11 +1,8 @@
-import React, { useState } from "react";
 
-function Search({ onUpdateSearch }) {
-  const [searchText, setSearchText] = useState("")
+function Search({ onUpdateSearch, searchPlants }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setSearchText(e.target.value)
     onUpdateSearch(e.target.value)
   }
 
@@ -16,7 +13,7 @@ function Search({ onUpdateSearch }) {
         type="text"
         id="search"
         placeholder={"Type a name to search..."}
-        value={searchText}
+        value={searchPlants}
         onChange={handleSubmit}
       />
     </div>

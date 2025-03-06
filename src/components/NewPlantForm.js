@@ -9,11 +9,26 @@ function NewPlantForm({ onAddPlant }) {
     e.preventDefault();
     const newPlant = { name, image, price: parseFloat(price), stocked: true };
     onAddPlant(newPlant);
+
+    fetch("http://localhost:6001/plants", {
+      method: "POST",
+      body: JSON.stringify(newPlant),
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+    .then((resp) => resp.json())
+    .then((data) => {
+      onAddPlant(data)
+    });
+
     setName("");
     setImage("");
     setPrice("");
   }
   
+
+
   return (
     <div className="new-plant-form">
       <h2>New Plant</h2>
